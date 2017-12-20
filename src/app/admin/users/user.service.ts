@@ -39,4 +39,12 @@ export class UserService {
       .then(response => response.json() as User)
       .catch(UserService.handleError);
   }
+
+  createUser(user: User): Promise<User> {
+    const url = `${UserService.apiUrl}`;
+    return this.http.post(url, user)
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(UserService.handleError);
+  }
 }

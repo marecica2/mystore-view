@@ -15,8 +15,6 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.users = [];
-    // this.users.push(new User(1, 'test@gmail.com', 'Test', 'Test'));
     this.getUsers();
   }
 
