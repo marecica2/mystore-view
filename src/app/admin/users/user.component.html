@@ -28,16 +28,12 @@
 		<input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
 	</div>
 	<div class="form-group">
-
-
 		<ng-container *ngIf="user.id">
 			<button (click)="save(user);" class="btn btn-primary">Update</button>
 		</ng-container>
 		<ng-container *ngIf="!user.id">
 			<button (click)="save(user);" class="btn btn-primary">Create</button>
 		</ng-container>
-
-
 		&nbsp;
 		<a [routerLink]="['../']">back</a>
 	</div>
