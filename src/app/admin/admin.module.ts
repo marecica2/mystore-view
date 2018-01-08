@@ -1,6 +1,9 @@
+import { AuthInterceptor } from './../auth.interceptor';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+
+import { AuthGuard } from '../auth.guard';
 
 import {AdminComponent} from './admin.component';
 import {UsersComponent} from './users/users.component';
@@ -25,7 +28,8 @@ import {AdminDashboardComponent} from './admin.dashboard.component';
     ProductsComponent,
   ],
   providers: [
-    UserService
+    UserService,
+    AuthGuard,
   ]
 })
 export class AdminModule {

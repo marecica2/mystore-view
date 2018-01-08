@@ -1,8 +1,8 @@
+import { UserService } from './user.service';
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
-import { UserService } from './user.service';
 import { User } from './user';
 
 @Component({
@@ -14,8 +14,7 @@ export class UserComponent implements OnInit {
   id: string;
   private sub: any;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.route = route;
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -44,6 +43,7 @@ export class UserComponent implements OnInit {
         .then((user) => {
           console.log('created', this.user);
           this.user = user;
+          this.router.navigateByUrl('/admin/users');
         });
     }
   }

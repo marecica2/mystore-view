@@ -26,6 +26,10 @@ export class UsersComponent implements OnInit {
     console.log('user was blocked', user);
   }
 
+  delete(user: User): void {
+    this.userService.deleteUser(user).then(response => this.getUsers());
+  }
+
   onSelect(user: User): void {
     this.selectedUser = user;
   }

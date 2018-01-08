@@ -9,17 +9,18 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>Id</th>
+      <th>Login</th>
       <th>User</th>
       <th>Actions</th>
     </tr>
     </thead>
-    <tr *ngFor="let user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
-      <td><span class="badge">{{user.id}}</span></td>
+    <tr *ngFor="let user of users">
+      <td><span>{{user.login}}</span></td>
       <td>{{user.firstName}} {{user.lastName}}</td>
       <td>
         <a (click)="$event.preventDefault(); block(user);" href>block</a> |
-        <a [routerLink]="['./', user.id]">edit</a>
+        <a [routerLink]="['./', user.id]">edit</a> |
+        <a (click)="$event.preventDefault(); delete(user);" href>delete</a>
       </td>
     </tr>
   </table>

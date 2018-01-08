@@ -4,8 +4,8 @@
     <a class="navbar-brand" routerLink="/index" routerLinkActive="active">
       <img src="assets/logo.png" width="50" height="30" class="d-inline-block align-top" alt=""> Bookstore
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -15,8 +15,8 @@
           <a class="nav-link" routerLink="/index" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
             Services
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -29,12 +29,19 @@
       </ul>
 
       <ul class="navbar-nav pull-right">
-        <li class="nav-item pull-right">
-          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
-        </li>
-        <li class="nav-item pull-right">
-          <a class="nav-link" routerLink="/auth/signup" routerLinkActive="active">Sign Up</a>
-        </li>
+        <ng-container *ngIf="!isLogged(); else logoutTemplate">
+          <li class="nav-item pull-right">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item pull-right">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Sign Up</a>
+          </li>
+        </ng-container>
+        <ng-template #logoutTemplate>
+          <li class="nav-item pull-right">
+            <a class="nav-link" (click)="logout()" >Logout</a>
+          </li>
+        </ng-template>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
