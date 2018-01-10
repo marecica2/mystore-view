@@ -5,7 +5,13 @@ import { AuthenticationService } from './authentication.service';
  
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'login.component.html',
+    styles: [`
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+    `]
 })
  
 export class LoginComponent implements OnInit {

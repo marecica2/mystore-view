@@ -14,7 +14,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
         const customReq = request.clone({
             setHeaders: {
-                Authorization: `Basic ${this.auth.token}`
+                'X-Requested-With': 'XMLHttpRequest',
+                Authorization: `Bearer ${this.auth.token}`
             }
         });
 
