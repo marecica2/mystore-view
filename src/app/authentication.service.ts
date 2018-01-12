@@ -8,11 +8,15 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthenticationService {
     
+    public static ROLE_ADMIN = "ROLE_ADMIN";
+    public static ROLE_USER = "ROLE_USER";
+    
     public token: string = null;
 
     constructor(private http: Http, private router: Router) {
         if (Cookie.check('access_token')) {
             this.token = Cookie.get('access_token');
+            console.log(this.parseToken(this.token));
         }
     }
 
@@ -28,12 +32,11 @@ export class AuthenticationService {
         params.append('username', username);
         params.append('password', password);
         params.append('grant_type', 'password');
-        params.append('client_id', 'fooClientIdPassword');
 
         let headers = new Headers({
             'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
             'X-Requested-With': 'XMLHttpRequest',
-            'Authorization': 'Basic ' + btoa("fooClientIdPassword:secret")
+            'Authorization': 'Basic ' + btoa('trusted-app' + ":" + 'secret')
         });
         let options = new RequestOptions({ headers: headers });
         console.log(params.toString());
@@ -76,4 +79,18 @@ export class AuthenticationService {
         Cookie.delete('access_token');
         this.router.navigate(['/login']);
     }
+
+    getLoggedUser(): String {
+        return this.parseToken(this.token)['user_name']
+    }
+
+    isInRole(role: String): Boolean {
+        return this.parseToken(this.token).authorities.indexOf(role) !== -1 ? true : false;
+    }
+
+    private parseToken (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
 }

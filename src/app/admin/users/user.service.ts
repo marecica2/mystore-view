@@ -7,7 +7,7 @@ import { User } from './user';
 
 @Injectable()
 export class UserService {
-  private static apiUrl = '/api/users';
+  private static apiUrl = '/user-api/users';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   private static handleError(error: any): Promise<any> {

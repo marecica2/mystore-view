@@ -9,11 +9,11 @@
     "logLevel": "debug"
   },
 
-  "/api2": {
-    "target": "http://localhost:8090",
+  "/user-api": {
+    "target": "http://localhost:8081",
     "secure": false,
     "pathRewrite": {
-      "^/api2": ""
+      "^/user-api": ""
     },
     "changeOrigin": true,
     "logLevel": "debug"
